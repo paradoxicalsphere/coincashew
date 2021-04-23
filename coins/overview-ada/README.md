@@ -1,11 +1,13 @@
 ---
 description: >-
-  Cardano es una cadena de bloques descentralizada, pública que es de código abierto. Es la primera cadena de bloques que ha evolucionado a través de una filosofía científica. 
+  Cardano es una cadena de bloques descentralizada, pública que es de código
+  abierto. Es la primera cadena de bloques que ha evolucionado a través de una
+  filosofía científica.
 ---
 
 # Cardano: ADA
 
-## ![](../../.gitbook/assets/ada.png) Datos Generales
+##  Datos Generales
 
 | Página Web | Enlace |
 | :--- | :--- |
@@ -53,10 +55,4 @@ description: >-
 | CoinGecko | [https://www.coingecko.com/en/coins/cardano](https://www.coingecko.com/en/coins/cardano) |
 
 ## 💰 Wallets
-
-{% page-ref page="../../wallets/browser-wallets/yoroi-wallet-cardano.md" %}
-
-{% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
-
-{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
 

@@ -1,17 +1,18 @@
 ---
 description: >-
-  Esta guía mostrará la manera de instalar y configurar una Stake Pool de Cardano desde su código fuente en una configuración de dos nodos, con 1 Nodo Productor de Bloques y 1 Nodo Relevador.
+  Esta guía mostrará la manera de instalar y configurar una Stake Pool de
+  Cardano desde su código fuente en una configuración de dos nodos, con 1 Nodo
+  Productor de Bloques y 1 Nodo Relevador.
 ---
 
 # Guía: ¿Cómo implementar una Stake Pool en Cardano?
 
 {% hint style="info" %}
-¡Muchas gracias por todo el apoyo y los mensajes! Realmente nos motiva a seguir creando las mejores guías de criptomonedas. Si deseas donar [estas son las direcciones](https://cointr.ee/coincashew) a las que puedes depositar. 🙏 
+¡Muchas gracias por todo el apoyo y los mensajes! Realmente nos motiva a seguir creando las mejores guías de criptomonedas. Si deseas donar [estas son las direcciones](https://cointr.ee/coincashew) a las que puedes depositar. 🙏
 {% endhint %}
 
 {% hint style="success" %}
-Última actualización: 18 de Abril de 2021. 
-Esta guía está en su **versión 3.3.0** y está escrita para la  **mainnet de cardano** versión **1.26.2** 😁 
+Última actualización: 18 de Abril de 2021. Esta guía está en su **versión 3.3.0** y está escrita para la **mainnet de cardano** versión **1.26.2** 😁
 {% endhint %}
 
 ### 🏁 0. Prerrequisitos
@@ -32,7 +33,7 @@ Como operador de un nodo de Cardano, tendrás que tener las siguientes habilidad
 * [Haber tomado el curso oficial de Stake Pool.](https://cardano-foundation.gitbook.io/stake-pool-course/) 
 
 {% hint style="danger" %}
-🛑 **Antes de continuar, es NECESARIO cumplir con los requisitos anteriores.** 🚧 
+🛑 **Antes de continuar, es NECESARIO cumplir con los requisitos anteriores.** 🚧
 {% endhint %}
 
 #### 🎗 Hardware mínimo
@@ -65,22 +66,17 @@ Como operador de un nodo de Cardano, tendrás que tener las siguientes habilidad
 
 Si deseas mejorar la seguridad de tus nodos, puedes consultar el siguiente enlace:
 
-{% page-ref page="how-to-harden-ubuntu-server.md" %}
-
 ### 🛠 Instalación de Ubuntu
 
 Si necesitas ayuda instalando **Ubuntu Server**, puedes consultar el siguiente enlace:
 
-{% embed url="https://ubuntu.com/tutorials/install-ubuntu-server\#1-overview" %}
+{% embed url="https://ubuntu.com/tutorials/install-ubuntu-server\#1-overview" caption="" %}
 
 Si necesitas ayuda instalando **Ubuntu Desktop**, puedes consultar el siguiente enlace:
 
-{% page-ref page="../../overview-xtz/guide-how-to-setup-a-baker/install-ubuntu.md" %}
-
-
 ### 🧱 Reconstruyendo Nodos
 
-Si estás reconstruyendo o reutilizando una instalación previa de `cardano-node`, consulta la [sección 18.2 ¿Cómo reiniciar la instalación?.](./#18-2-resetting-the-installation)
+Si estás reconstruyendo o reutilizando una instalación previa de `cardano-node`, consulta la [sección 18.2 ¿Cómo reiniciar la instalación?.](/#18-2-resetting-the-installation)
 
 ### 🏭 1. Instalar Cabal y GHC
 
@@ -150,7 +146,7 @@ ghcup install ghc 8.10.4
 ghcup set ghc 8.10.4
 ```
 
-Actualiza la variable PATH para que incluya a Cabal y GHC. Exportamos rutas y variables a nuestro archivo bashrc. La localización del nodo será **$NODE\_HOME**. La [configuración del cluster](https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html) está dada por **$NODE\_CONFIG** y **$NODE\_BUILD\_NUM**. 
+Actualiza la variable PATH para que incluya a Cabal y GHC. Exportamos rutas y variables a nuestro archivo bashrc. La localización del nodo será **$NODE\_HOME**. La [configuración del cluster](https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html) está dada por **$NODE\_CONFIG** y **$NODE\_BUILD\_NUM**.
 
 ```bash
 echo PATH="$HOME/.local/bin:$PATH" >> $HOME/.bashrc
@@ -164,9 +160,9 @@ source $HOME/.bashrc
 {% hint style="info" %}
 💡 **¿Cómo usar esta guía para la TestNet?**
 
-En cada ****parámetro de CLI**** donde aparezca: 
+En cada **parámetro de CLI** donde aparezca:
 
- `--mainnet` 
+`--mainnet`
 
 reemplaza la instrucción por:
 
@@ -184,7 +180,6 @@ ghc --version
 {% hint style="info" %}
 Cabal debe ser versión 3.4.0.0 y GHC versión 8.10.4
 {% endhint %}
-
 
 ### 🏗 2. Construyendo el nodo desde su código fuente
 
@@ -232,13 +227,12 @@ sudo cp $(find $HOME/git/cardano-node/dist-newstyle/build -type f -name "cardano
 sudo cp $(find $HOME/git/cardano-node/dist-newstyle/build -type f -name "cardano-node") /usr/local/bin/cardano-node
 ```
 
-Verifica que las versiones de **cardano-cli** y **cardano-node** sean las correctas (En este caso, la 1.26.2).
+Verifica que las versiones de **cardano-cli** y **cardano-node** sean las correctas \(En este caso, la 1.26.2\).
 
 ```text
 cardano-node version
 cardano-cli version
 ```
-
 
 ### 📐 3. Configuración de los nodos
 
@@ -254,6 +248,7 @@ wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-
 ```
 
 Ejecuta los siguientes comandos para modificar el archivo **mainnet-config.json** y cambiar la línea:
+
 * update TraceBlockFetchDecisions a "true"
 
 ```bash
@@ -262,7 +257,7 @@ sed -i ${NODE_CONFIG}-config.json \
 ```
 
 {% hint style="info" %}
-\*\*\*\*✨ **Tip**: En el Nodo Relevador es posible reducir el consumo de memoria y de CPU cambiando el parámetro "TraceMemPool" a "false" en el archivo **mainnet-config.json**  
+\*\*\*\*✨ **Tip**: En el Nodo Relevador es posible reducir el consumo de memoria y de CPU cambiando el parámetro "TraceMemPool" a "false" en el archivo **mainnet-config.json**
 {% endhint %}
 
 Actualiza el archivo **.bashrc** con las nuevas variables de Shell.
@@ -282,17 +277,15 @@ Un Nodo Productor de Bloques es aquel que está configurado con varios pares de 
 Un Nodo Relevador no tendrá ningún tipo de clave y por lo tanto no será capaz de producir ningún bloque. Estará conectado a su Nodo Productor de Bloques, a otros relevadores y nodos externos en la red.
 {% endhint %}
 
-![](../../../.gitbook/assets/producer-relay-diagram.png)
-
 {% hint style="success" %}
 Para propósitos de la guía, vamos a trabajar **dos nodos** en **dos servidores independientes**. Uno será llamado el **Nodo Productor de Bloques** y el otro será su Nodo Relevador, llamado **NodoRelevador1**.
 {% endhint %}
 
 {% hint style="danger" %}
-Editamos el archivo **topology.json** para que: 
+Editamos el archivo **topology.json** para que:
 
-* El/Los Nodo(s) Relevadore(s) se conectan a los Relevadores Públicos \(como los de  IOHK y los Nodos de confianza\) y a tu Nodo Productor de Bloques.
-* El Nodo Productor de Bloques **SOLAMENTE** debe de tener conexión con el/los Nodo(s) Relevadore(s). 
+* El/Los Nodo\(s\) Relevadore\(s\) se conectan a los Relevadores Públicos \(como los de  IOHK y los Nodos de confianza\) y a tu Nodo Productor de Bloques.
+* El Nodo Productor de Bloques **SOLAMENTE** debe de tener conexión con el/los Nodo\(s\) Relevadore\(s\). 
 {% endhint %}
 
 En el **Nodo Productor de Bloques,** ejecuta los siguientes comandos. Cambia el campo **addr** con la IP de tu Nodo Relevador.
@@ -326,6 +319,7 @@ Puedes tener múltiples Nodos Relevadores a manera que escales la arquitectura d
 {% endhint %}
 
 En el **NodoRelevador1** ejectuta el siguiente comando, **recuerda cambiar la dirección IP del Nodo Productor de Bloques.**
+
 {% tabs %}
 {% tab title="NodoRelevador1" %}
 ```bash
@@ -360,7 +354,7 @@ La valencia, **valency**, le indica a nuestro nodo cuántas conexiones mantener 
 ### 🔏 6. Configurar la máquina fuera de línea
 
 {% hint style="info" %}
-Una máquina fuera de línea se conoce como un **entorno frío**. 
+Una máquina fuera de línea se conoce como un **entorno frío**.
 
 * Está protegida contra intentos de key-logging, ataques basados en virus o otro tipo de exploit del firewall.
 * Físicamente aislada del resto de la red.
@@ -379,12 +373,11 @@ mkdir -p $NODE_HOME
 {% endtab %}
 {% endtabs %}
 
-Copia de tu **entorno caliente**, también conocido como el Nodo Productor de Bloques, una copia del archivo **`cardano-cli`** hacia tu **entorno frío**, y colócalo en la carpeta de binarios. 
+Copia de tu **entorno caliente**, también conocido como el Nodo Productor de Bloques, una copia del archivo **`cardano-cli`** hacia tu **entorno frío**, y colócalo en la carpeta de binarios.
 
 {% hint style="danger" %}
 Para que verdaderamente se considere una Máquina Fuera de Línea, debes de mover los archivos de manera física entre los dos usando una USB o otro dispositivo portátil.
 {% endhint %}
-
 
 ### 🤖 7. Creación de Scripts de arranque
 
@@ -435,7 +428,7 @@ chmod +x $NODE_HOME/startBlockProducingNode.sh
 
 {% tab title="NodoRelevador1" %}
 ```bash
-chmod +x $NODE_HOME/startRelayNode1.sh 
+chmod +x $NODE_HOME/startRelayNode1.sh
 ```
 {% endtab %}
 {% endtabs %}
@@ -476,7 +469,7 @@ RestartSec=5
 SyslogIdentifier=cardano-node
 
 [Install]
-WantedBy	= multi-user.target
+WantedBy    = multi-user.target
 EOF
 ```
 {% endtab %}
@@ -506,7 +499,7 @@ RestartSec=5
 SyslogIdentifier=cardano-node
 
 [Install]
-WantedBy	= multi-user.target
+WantedBy    = multi-user.target
 EOF
 ```
 {% endtab %}
@@ -569,7 +562,6 @@ journalctl --unit=cardano-node --since=today
 journalctl --unit=cardano-node --since='2020-07-29 00:00:00' --until='2020-07-29 12:00:00'
 ```
 
-
 ### ✅ 8. Iniciando los Nodos
 
 ¡Vamos a iniciar la sincronización de los nodos con la cadena de bloques!
@@ -626,8 +618,6 @@ Ejecutamos gLiveView para monitorear el proceso de sincronización de nuestro no
 
 Vista de ejemplo de gLiveView
 
-![](../../../.gitbook/assets/glive.png)
-
 Para más información, puedes ir a la [página Oficial de Guild Live View](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
 
 {% hint style="info" %}
@@ -639,6 +629,7 @@ Para más información, puedes ir a la [página Oficial de Guild Live View](http
 {% endhint %}
 
 ### ⚙ 9. Generación de claves para el Nodo Productor de Bloques
+
 El Nodo Productor de Bloques requiere la creación de 3 claves, las cuales están definidas [en el documento de Shelley](https://hydra.iohk.io/build/2473732/download/1/ledger-spec.pdf):
 
 * Claves frías del Stake Pool \(node.cert\)
@@ -734,9 +725,9 @@ echo startKesPeriod: ${startKesPeriod}
 {% endtab %}
 {% endtabs %}
 
-Con este cálculo, ya podemos generar el certificado de operación para el Stake Pool. 
+Con este cálculo, ya podemos generar el certificado de operación para el Stake Pool.
 
-Copia **kes.vkey** a tu **entorno frío**. 
+Copia **kes.vkey** a tu **entorno frío**.
 
 Cambiamos &lt;**startKesPeriod&gt;** al valor calculado anteriormente.
 
@@ -777,7 +768,7 @@ Actualizamos los permisos de la clave VRF para ser solo lectura.
 chmod 400 vrf.skey
 ```
 
-Detenemos la ****Stake Pool ejecutando el siguiente código:
+Detenemos la _\*\*_Stake Pool ejecutando el siguiente código:
 
 {% tabs %}
 {% tab title="Nodo Productor de Bloques" %}
@@ -828,7 +819,6 @@ sudo systemctl start cardano-node
 
 ### 🔐 10. Establecer las claves de pago y stake
 
-
 Primero obtenemos los parámetros del protocolo.
 
 {% hint style="info" %}
@@ -854,7 +844,7 @@ Las claves de pago son usadas para mandar y recibir pagos, mientras que las clav
 Hay dos maneras de crear tu par de claves de `pago` y `stake`. Elige la que cumpla mejor con tus necesidades.
 
 {% hint style="danger" %}
-🔥 **Consejo Crítico de Seguridad:** Las claves de `pago` y `stake` deben de ser generadas y usadas para construir transacciones en un entorno frío, en otras palabras tu **Máquina Fuera de Línea**. Copia el binario `cardano-cli` a tu Máquina Fuera de Línea y ejecuta el método CLI o el método de la mnemónica. Los únicos pasos que son hechos en el Nodo Productor son aquellos que requieren consultar información de la cadena de bloques. Específicamente los siguientes pasos:  
+🔥 **Consejo Crítico de Seguridad:** Las claves de `pago` y `stake` deben de ser generadas y usadas para construir transacciones en un entorno frío, en otras palabras tu **Máquina Fuera de Línea**. Copia el binario `cardano-cli` a tu Máquina Fuera de Línea y ejecuta el método CLI o el método de la mnemónica. Los únicos pasos que son hechos en el Nodo Productor son aquellos que requieren consultar información de la cadena de bloques. Específicamente los siguientes pasos:
 
 * Consultar el slot actual en la red.
 * Consultar el balance de una dirección.
@@ -863,7 +853,7 @@ Hay dos maneras de crear tu par de claves de `pago` y `stake`. Elige la que cump
 
 {% tabs %}
 {% tab title="Método CLI" %}
-Creamos un nuevo par de claves de pago:  `payment.skey` y `payment.vkey`
+Creamos un nuevo par de claves de pago: `payment.skey` y `payment.vkey`
 
 ```bash
 ###
@@ -976,8 +966,8 @@ CCLI=\${CCLI:=\$( which cardano-cli )}
 
 OUT_DIR="\$1"
 [[ -e "\$OUT_DIR"  ]] && {
-       	echo "The \"\$OUT_DIR\" is already exist delete and run again." >&2 
-       	exit 127
+           echo "The \"\$OUT_DIR\" is already exist delete and run again." >&2 
+           exit 127
 } || mkdir -p "\$OUT_DIR" && pushd "\$OUT_DIR" >/dev/null
 
 shift
@@ -1113,7 +1103,7 @@ Finalmente cierra todas las ventanas de terminal y abre una nueva sesión con un
 {% endtab %}
 {% endtabs %}
 
-Ahora hay que añadir fondos a la dirección de pago. 
+Ahora hay que añadir fondos a la dirección de pago.
 
 Copia **payment.addr** a tu **entorno caliente**.
 
@@ -1292,7 +1282,7 @@ cardano-cli transaction build-raw \
 {% endtabs %}
 
 Copia **tx.raw** a tu **entorno frío**
- 
+
 Firmamos la transacción con las claves secretas de pago y stake.
 
 {% tabs %}
@@ -1363,8 +1353,6 @@ Ahora sube el archivo **poolMetaData.json** a tu propio sito web o en un sitio w
 
 Consulta la siguiente guía si necesitas ayuda subiendo tu archivo a github.com
 
-{% page-ref page="how-to-upload-poolmetadata.json-to-github.md" %}
-
 Encontramos el costo mínimo del Stake Pool:
 
 {% tabs %}
@@ -1387,14 +1375,13 @@ Los relevadores en base a DNS son recomendados por las simplicidad de administra
 {% endhint %}
 
 {% hint style="info" %}
-#### \*\*\*\*✨ **¿Cómo configurar múltiples relevadores?** 
+#### \*\*\*\*✨ **¿Cómo configurar múltiples relevadores?**
 
-Update the next operation
-Actualiza la siguiente operación para que sea ejecutada en tu máquina fuera de línea de manera apropiada
+Update the next operation Actualiza la siguiente operación para que sea ejecutada en tu máquina fuera de línea de manera apropiada
 
 `cardano-cli stake-pool registration-certificate`
 
-**Relevadores en base a DNS, 1 registro por DNS **
+**Relevadores en base a DNS, 1 registro por DNS** 
 
 ```bash
     --single-host-pool-relay relaynode1.myadapoolnamerocks.com\
@@ -1402,6 +1389,7 @@ Actualiza la siguiente operación para que sea ejecutada en tu máquina fuera de
     --single-host-pool-relay relaynode2.myadapoolnamerocks.com\
     --pool-relay-port 6000 \
 ```
+
 **Relevadores en base a Round Robin de DNS, 1 registro por** [**SRV DNS record**](https://support.dnsimple.com/articles/srv-record/)\*\*\*\*
 
 ```bash
@@ -1420,7 +1408,7 @@ Actualiza la siguiente operación para que sea ejecutada en tu máquina fuera de
 {% endhint %}
 
 {% hint style="warning" %}
-La longitud de la url en el parámetro **metadata-url**, no debe ser exceder los 64 caracteres. 
+La longitud de la url en el parámetro **metadata-url**, no debe ser exceder los 64 caracteres.
 {% endhint %}
 
 {% tabs %}
@@ -1464,7 +1452,7 @@ cardano-cli stake-address delegation-certificate \
 Copia **deleg.cert** a tu **entorno caliente**.
 
 {% hint style="info" %}
-Esta operación crea un certificado de delegación, el cual delega los fondos de todas las direcciones de stake asociadas a la clave `stake.vkey` a la Stake Pool perteneciente a la clave fría `node.vkey`.  
+Esta operación crea un certificado de delegación, el cual delega los fondos de todas las direcciones de stake asociadas a la clave `stake.vkey` a la Stake Pool perteneciente a la clave fría `node.vkey`.
 {% endhint %}
 
 {% hint style="info" %}
@@ -1532,9 +1520,7 @@ echo poolDeposit: $poolDeposit
 Ejecuta el comando para construir la transacción.
 
 {% hint style="info" %}
-
 El valor de **invalid-hereafter** debe ser mayor al tip actual de la red. Para este ejemplo usamos **current slot + 10000**.
-
 {% endhint %}
 
 {% tabs %}
@@ -1661,14 +1647,14 @@ cardano-cli query ledger-state --mainnet | grep publicKey | grep $(cat stakepool
 
 {% hint style="info" %}
 Si el comando retorna una cadena no vacía, significa que estás registrado correctamente 👏
-{% endhint %} 
+{% endhint %}
 
 Con el ID del Stake Pool, ahora puedes buscar tu información en exploradores de la cadena de bloques, tales como [https://pooltool.io/](https://pooltool.io/)
 
 ### ⚙ 14. Configuración del archivo de topología
 
 {% hint style="info" %}
-La actualización de Shelley fue lanzada sin descubrimiento de nodos por P2P (Peer-to-peer), lo que significa que necesitaremos agregar de manera manual las direcciones de los nodos para configurar nuestro archivo de topología. Este es un **paso crítico**, saltarse este paso resultará en bloques aislados del resto de la red.
+La actualización de Shelley fue lanzada sin descubrimiento de nodos por P2P \(Peer-to-peer\), lo que significa que necesitaremos agregar de manera manual las direcciones de los nodos para configurar nuestro archivo de topología. Este es un **paso crítico**, saltarse este paso resultará en bloques aislados del resto de la red.
 {% endhint %}
 
 Configuremos los archivos de la topología.
@@ -1680,10 +1666,11 @@ Configuremos los archivos de la topología.
 ### 🚀 Publicar tu nodo con topologyUpdater.sh
 
 {% hint style="info" %}
-Créditos a [GROWPOOL](https://twitter.com/PoolGrow) por esta opción y créditos a [CNTOOLS Guild OPS](https://cardano-community.github.io/guild-operators/Scripts/topologyupdater.html) por la creación de este proceso. 
+Créditos a [GROWPOOL](https://twitter.com/PoolGrow) por esta opción y créditos a [CNTOOLS Guild OPS](https://cardano-community.github.io/guild-operators/Scripts/topologyupdater.html) por la creación de este proceso.
 {% endhint %}
 
 Creamos el script `topologyUpdater.sh` el cual publica la información de nuestro nodo en una lista de descubrimiento.
+
 ```bash
 ###
 ### En el NodoRelevador1
@@ -1691,7 +1678,7 @@ Creamos el script `topologyUpdater.sh` el cual publica la información de nuestr
 cat > $NODE_HOME/topologyUpdater.sh << EOF
 #!/bin/bash
 # shellcheck disable=SC2086,SC2034
- 
+
 USERNAME=$(whoami)
 CNODE_PORT=6000 # must match your relay node port as set in the startup command
 CNODE_HOSTNAME="CHANGE ME"  # optional. must resolve to the IP you are requesting from
@@ -1704,12 +1691,12 @@ CNODE_VALENCY=1   # optional for multi-IP hostnames
 NWMAGIC=\$(jq -r .networkMagic < \$GENESIS_JSON)
 [[ "\${NETWORKID}" = "Mainnet" ]] && HASH_IDENTIFIER="--mainnet" || HASH_IDENTIFIER="--testnet-magic \${NWMAGIC}"
 [[ "\${NWMAGIC}" = "1097911063" ]] && NETWORK_IDENTIFIER="--mainnet" || NETWORK_IDENTIFIER="--testnet-magic \${NWMAGIC}"
- 
+
 export PATH="\${CNODE_BIN}:\${PATH}"
 export CARDANO_NODE_SOCKET_PATH="\${CNODE_HOME}/db/socket"
- 
+
 blockNo=\$(/usr/local/bin/cardano-cli query tip \${NETWORK_IDENTIFIER} | jq -r .block )
- 
+
 # Note:
 # if you run your node in IPv4/IPv6 dual stack network configuration and want announced the
 # IPv4 address only please add the -4 parameter to the curl command below  (curl -4 -s ...)
@@ -1722,7 +1709,7 @@ fi
 if [ ! -d \${CNODE_LOG_DIR} ]; then
   mkdir -p \${CNODE_LOG_DIR};
 fi
- 
+
 curl -s "https://api.clio.one/htopology/v1/?port=\${CNODE_PORT}&blockNo=\${blockNo}&valency=\${CNODE_VALENCY}&magic=\${NWMAGIC}\${T_HOSTNAME}" | tee -a \$CNODE_LOG_DIR/topologyUpdater_lastresult.json
 EOF
 ```
@@ -1812,8 +1799,6 @@ No olvides reiniciar tus Nodos Relevadores después de cada actualización del a
 \*\*\*\*🔥 **Paso Crítico:** Para que tu Stake Pool sea funcional y esté lista para producir bloques, debes de ver el número de transacciones aumentando en gLiveView. De lo contrario revisa tu archivo de topología y asegurate que los demás nodos están conectados correctamente, o idealmente que hayan producido algún bloque en el pasado.
 {% endhint %}
 
-![Las Transacciones deben ser un número positivo. Debe de haber conexiones en la parte de IN / OUT.](../../../.gitbook/assets/in-out-connections.png)
-
 {% hint style="danger" %}
 \*\*\*\*🛑 **Nota Importante de Seguridad**: Las siguientes claves y certificados son los únicos archivos requeridos en el Nodo Productor para que el Stake Pool funcione:
 
@@ -1851,7 +1836,6 @@ cardano-cli query stake-address-info \
 {% endtab %}
 {% endtabs %}
 
-
 ### 🔮 16. Configura tu Consola de Control con Prometheus y Grafana
 
 Prometheus es una plataforma para monitero de información que se recolecta a través de métricas. [La documentación oficial se puede encontrar aquí](https://prometheus.io/docs/introduction/overview/). Grafana es un tablero que se usa para visualizar la información recolectada.
@@ -1862,14 +1846,14 @@ Instalamos prometheus y el exportador de nodos de prometheus.
 
 {% tabs %}
 {% tab title="NodoRelevador1" %}
-```
-sudo apt-get install -y prometheus prometheus-node-exporter 
+```text
+sudo apt-get install -y prometheus prometheus-node-exporter
 ```
 {% endtab %}
 
 {% tab title="Nodo Productor de Bloques" %}
 ```bash
-sudo apt-get install -y prometheus-node-exporter 
+sudo apt-get install -y prometheus-node-exporter
 ```
 {% endtab %}
 {% endtabs %}
@@ -1913,7 +1897,7 @@ sudo systemctl enable prometheus-node-exporter.service
 {% endtab %}
 
 {% tab title="Nodo Productor de Bloques" %}
-```
+```text
 sudo systemctl enable prometheus-node-exporter.service
 ```
 {% endtab %}
@@ -1987,7 +1971,7 @@ Actualizamos el archivo de configuración `${NODE_CONFIG}-config.json` con los n
 ```bash
 cd $NODE_HOME
 
-sed -i ${NODE_CONFIG}-config.json -e "s/127.0.0.1/0.0.0.0/g"  
+sed -i ${NODE_CONFIG}-config.json -e "s/127.0.0.1/0.0.0.0/g"
 ```
 {% endtab %}
 
@@ -1995,7 +1979,7 @@ sed -i ${NODE_CONFIG}-config.json -e "s/127.0.0.1/0.0.0.0/g"
 ```bash
 cd $NODE_HOME
 
-sed -i ${NODE_CONFIG}-config.json -e "s/127.0.0.1/0.0.0.0/g"  
+sed -i ${NODE_CONFIG}-config.json -e "s/127.0.0.1/0.0.0.0/g"
 ```
 {% endtab %}
 {% endtabs %}
@@ -2026,42 +2010,42 @@ sudo systemctl restart cardano-node
 
 #### 📶 16.2 Configuración de Grafana
 
-2. En el NodoRelevador1, abre la página [http://localhost:3000](http://localhost:3000) o http://IpNodoRelevador1:3000 en un explorador web.
-3. Accedemos a Grafana usando **usuario: admin** / **contraseña: admin**
-4. Cambiamos la contraseña.
-5. Hacemos clic en el ícono del **engrane** y luego hacemos clic en **Add Data Source**.
-7. Seleccionamos **Prometheus**.
-8. Establecemos **Name** como **"Prometheus**"
-9. Establecemos **URL** como **http://localhost:9090**
-10. Hacemos clic en **Save & Test**
-11. **Desgarga y guarda** este [**archivo .json**](https://raw.githubusercontent.com/coincashew/coincashew/master/.gitbook/assets/grafana-monitor-cardano-nodes-by-kaze.json)**.**
-12. Hacemos click en **Create +**  &gt; y luego en **Import**.
-13. Agregamos un tablero usando la opción **Upload JSON file**.
-14. Hacemos clic al botón **Import**.
-
-![Créditos a la Stake Pool KAZE por este tablero](../../../.gitbook/assets/dashboard-kaze.jpg)
+1. En el NodoRelevador1, abre la página [http://localhost:3000](http://localhost:3000) o [http://IpNodoRelevador1:3000](http://IpNodoRelevador1:3000) en un explorador web.
+2. Accedemos a Grafana usando **usuario: admin** / **contraseña: admin**
+3. Cambiamos la contraseña.
+4. Hacemos clic en el ícono del **engrane** y luego hacemos clic en **Add Data Source**.
+5. Seleccionamos **Prometheus**.
+6. Establecemos **Name** como **"Prometheus**"
+7. Establecemos **URL** como [http://localhost:9090](http://localhost:9090)
+8. Hacemos clic en **Save & Test**
+9. **Desgarga y guarda** este [**archivo .json**](https://raw.githubusercontent.com/coincashew/coincashew/master/.gitbook/assets/grafana-monitor-cardano-nodes-by-kaze.json)**.**
+10. Hacemos click en **Create +**  &gt; y luego en **Import**.
+11. Agregamos un tablero usando la opción **Upload JSON file**.
+12. Hacemos clic al botón **Import**.
 
 {% hint style="success" %}
-¡Felicidades! Ya has terminado. A continuación hay más consejos para la operación y mantenimiento de la Stake Pool. 
+¡Felicidades! Ya has terminado. A continuación hay más consejos para la operación y mantenimiento de la Stake Pool.
 {% endhint %}
 
 {% hint style="info" %}
-🍰 Asegúrate de leer [la lista de las mejores prácticas para el operador](./#18-15-stake-pool-operators-best-practices-checklist)
+🍰 Asegúrate de leer [la lista de las mejores prácticas para el operador](/#18-15-stake-pool-operators-best-practices-checklist)
 {% endhint %}
 
 ### 👏 17. Agradecimientos, Telegram y material de referencia
 
 ### 😊 17.1 Donaciones
 
-{% hint style="info" %} 
-¿Encontraste útil esta guía? Háznoslo saber con una donación y continuaremos actualizandola. Puntos extras si sigues [las instrucciones de la sección 18.9](./#18-9-send-a-simple-transaction-example). 🙏 🚀 
+{% hint style="info" %}
+
+¿Encontraste útil esta guía? Háznoslo saber con una donación y continuaremos actualizandola. Puntos extras si sigues [las instrucciones de la sección 18.9](/#18-9-send-a-simple-transaction-example). 🙏 🚀
 
 Esto realmente nos anima a seguir creando las mejores guías en criptomonedas.
 
-Utiliza [cointr.ee](https://cointr.ee/coincashew) para conocer nuestras direcciones de donación addresses. 🙏 
+Utiliza [cointr.ee](https://cointr.ee/coincashew) para conocer nuestras direcciones de donación addresses. 🙏
 
-¡Muchas gracias por apoyar a Cardano y a nosotros! Por favor, usa el enlace de cointr.ee 😊  
-{% embed url="https://cointr.ee/coincashew" %}
+¡Muchas gracias por apoyar a Cardano y a nosotros! Por favor, usa el enlace de cointr.ee 😊
+
+{% embed url="https://cointr.ee/coincashew" caption="" %}
 
 #### 😁 17.2 Agradecimientos
 
@@ -2071,7 +2055,7 @@ Gracias a los más de 5000 seguidores, a la gente que tiene Cardano, desarrollad
 
 Únete y chatea con nuestras comunidades de Stake Pool en Telegram [https://t.me/coincashew](https://t.me/coincashew)
 
-La comunidad de Discord se encuentra en [https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃 
+La comunidad de Discord se encuentra en [https://discord.gg/w8Bx8W2HPW](https://discord.gg/w8Bx8W2HPW) 😃
 
 ### 🙃 17.4 Contribuyentes, Donadores y Stake Pools amigas de Coincashew
 
@@ -2117,15 +2101,15 @@ La comunidad de Discord se encuentra en [https://discord.gg/w8Bx8W2HPW](https://
 
 Para más información y documentación, por favor consulta los siguientes enlaces.
 
-{% embed url="https://docs.cardano.org/en/latest/getting-started/stake-pool-operators/index.html" %}
+{% embed url="https://docs.cardano.org/en/latest/getting-started/stake-pool-operators/index.html" caption="" %}
 
-{% embed url="https://testnets.cardano.org/en/shelley/get-started/creating-a-stake-pool/" %}
+{% embed url="https://testnets.cardano.org/en/shelley/get-started/creating-a-stake-pool/" caption="" %}
 
-{% embed url="https://github.com/input-output-hk/cardano-tutorials" %}
+{% embed url="https://github.com/input-output-hk/cardano-tutorials" caption="" %}
 
-{% embed url="https://github.com/cardano-community/guild-operators" %}
+{% embed url="https://github.com/cardano-community/guild-operators" caption="" %}
 
-{% embed url="https://github.com/gitmachtl/scripts" %}
+{% embed url="https://github.com/gitmachtl/scripts" caption="" %}
 
 #### CNTools by Guild Operators
 
@@ -2197,7 +2181,7 @@ Detenemos y reiniciamos el Nodo Productor de Bloques para completar el procedimi
 
 {% tabs %}
 {% tab title="Nodo Productor de Bloques" %}
-```
+```text
 sudo systemctl restart cardano-node
 ```
 {% endtab %}
@@ -2229,7 +2213,7 @@ chmod u+rwx $HOME/cold-keys
 
 ### 🔥 18.2 Reiniciando la intalación
 
-¿Quieres empezar de cero? ¿Reutilizar un servidor existente? ¿Un fork en la cadena de bloques? 
+¿Quieres empezar de cero? ¿Reutilizar un servidor existente? ¿Un fork en la cadena de bloques?
 
 Borra el repositorio, y renombra tu anterior directorio `$NODE_HOME` y `cold-keys` \(o borralos de manera opcional\). Ahora puedes comenzar con esta guía desde el inicio.
 
@@ -2248,10 +2232,10 @@ cd $NODE_HOME
 rm -rf db
 ```
 
-### 📝 18.4 Cambiando los parámetros del Stake Pool (Tarifas, Márgenes, etc)
+### 📝 18.4 Cambiando los parámetros del Stake Pool \(Tarifas, Márgenes, etc\)
 
 {% hint style="danger" %}
-**Recordatorio importante**🔥 Cualquier cambio hecho en esta sección tardan en tomar efecto hasta dentro de dos epochs (10 días). Es un error común disminuir el pledge y retir fondos de manera prematura, esto resulta en cero recompensas debido a que el pledge no ha sido actualizado y no se cumple.
+**Recordatorio importante**🔥 Cualquier cambio hecho en esta sección tardan en tomar efecto hasta dentro de dos epochs \(10 días\). Es un error común disminuir el pledge y retir fondos de manera prematura, esto resulta en cero recompensas debido a que el pledge no ha sido actualizado y no se cumple.
 {% endhint %}
 
 {% hint style="info" %}
@@ -2270,10 +2254,10 @@ echo minPoolCost: ${minPoolCost}
 {% endtabs %}
 
 {% hint style="info" %}
-El costo mínimo es de 340000000 lovelaces o 340 ADA. Por lo tanto el parámetro `--pool-cost` debe ser por lo menos esta cantidad.  
+El costo mínimo es de 340000000 lovelaces o 340 ADA. Por lo tanto el parámetro `--pool-cost` debe ser por lo menos esta cantidad.
 {% endhint %}
 
-Si modificas tu archivo poolMetaData.json, recuerda calcular el hash del archivo y volverlo a subir. Consulta la [sección 9 para más información.](./#9-register-your-stakepool)
+Si modificas tu archivo poolMetaData.json, recuerda calcular el hash del archivo y volverlo a subir. Consulta la [sección 9 para más información.](/#9-register-your-stakepool)
 
 {% tabs %}
 {% tab title="Nodo Productor de Bloques" %}
@@ -2285,7 +2269,7 @@ cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > po
 
 Actualiza el certificado de registro con los parámetros que desees.
 
-Si tienes **múltiples nodos relevadores** [**consulta la sección 12**](./#12-register-your-stake-pool) y cambia tus parámetros de manera apropiada.
+Si tienes **múltiples nodos relevadores** [**consulta la sección 12**](/#12-register-your-stake-pool) y cambia tus parámetros de manera apropiada.
 
 {% hint style="warning" %}
 El parámetro **metadata-url** no debe ser mayor a 64 caracteres.
@@ -2331,7 +2315,7 @@ cardano-cli stake-address delegation-certificate \
 
 Copia **deleg.cert** a tu **entorno caliente**.
 
-Necesitarás encontrar el **tip** de la cadena de bloques para asignar el parámetro **invalid-hereafter** de manera apropiada. 
+Necesitarás encontrar el **tip** de la cadena de bloques para asignar el parámetro **invalid-hereafter** de manera apropiada.
 
 {% tabs %}
 {% tab title="Nodo Productor de Bloques" %}
@@ -2375,7 +2359,7 @@ echo Number of UTXOs: ${txcnt}
 
 Construimos la transacción.
 
-{% hint style="info" %} 
+{% hint style="info" %}
 El valor de **invalid-hereafter** debe ser mayor al tip actual. En este ejemplo, usamos el slot actual + 10000.
 {% endhint %}
 
@@ -2442,7 +2426,7 @@ cardano-cli transaction build-raw \
 
 Copiamos **tx.raw** al **entorno frío**
 
-Firmamos la transacción. 
+Firmamos la transacción.
 
 {% tabs %}
 {% tab title="Máquina Fuera de Línea" %}
@@ -2472,7 +2456,7 @@ cardano-cli transaction submit \
 {% endtab %}
 {% endtabs %}
 
-Los cambios toman efecto en dos epochs (10 días). Después de la siguiente transición de epoch, verifica que la configuración de la Stake Pool sea la correcta.
+Los cambios toman efecto en dos epochs \(10 días\). Después de la siguiente transición de epoch, verifica que la configuración de la Stake Pool sea la correcta.
 
 {% tabs %}
 {% tab title="Nodo Productor de Bloques" %}
@@ -2521,10 +2505,10 @@ rsync -avzhe “ssh -p <SSH-PORT>” <PATH TO LOCAL PC DESTINATION> <USERNAME>@<
 Para prevenir la suplantación de identidad de Stake Pools, el propietario puede verificar su ticker presentando la propiedad de una Stake Pool en la ITN.
 
 {% hint style="info" %}
-La fase de la INT (Incentivized Testnet) en la era Shelley estuvo activa desde Noviembre de 2019 hasta finales de Junio de 2020. Si participaste en ella, puedes verificar tu ticker.
+La fase de la INT \(Incentivized Testnet\) en la era Shelley estuvo activa desde Noviembre de 2019 hasta finales de Junio de 2020. Si participaste en ella, puedes verificar tu ticker.
 {% endhint %}
 
-Asegurate que los binarios de ITN, `jcli`, estén presentes en `$NODE_HOME`. Usa `jcli` para firmar el ID de tu Stake Pool usando `itn_owner.skey` 
+Asegurate que los binarios de ITN, `jcli`, estén presentes en `$NODE_HOME`. Usa `jcli` para firmar el ID de tu Stake Pool usando `itn_owner.skey`
 
 {% tabs %}
 {% tab title="Máquina Fuera de Línea" %}
@@ -2548,7 +2532,7 @@ cat stakepoolid.sig
 
 Encuentra tu clave pública de propietario en el archivo generado en la ITN. Esta información podría estar almacenada en un archivo con extensión `.pub`
 
-Finalmente sigue [las instrucciones para actualizar la información de tu Stake Pool](./#18-4-changing-the-pledge-fee-margin-etc) usando **`metadata-url`** y **`metadata-hash`**. Date cuenta que la metadata tiene un campo llamado "extended" en donde se demuestra que tienes propiedad sobre el ticker desde la ITN.
+Finalmente sigue [las instrucciones para actualizar la información de tu Stake Pool](/#18-4-changing-the-pledge-fee-margin-etc) usando **`metadata-url`** y **`metadata-hash`**. Date cuenta que la metadata tiene un campo llamado "extended" en donde se demuestra que tienes propiedad sobre el ticker desde la ITN.
 
 ### 📚 18.8 Actualizar los archivos de configuración del nodo
 
@@ -2562,12 +2546,12 @@ wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-
 wget -N https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/${NODE_CONFIG}-config.json
 sed -i ${NODE_CONFIG}-config.json \
     -e "s/TraceBlockFetchDecisions\": false/TraceBlockFetchDecisions\": true/g" \
-	  -e "s/127.0.0.1/0.0.0.0/g" 
+      -e "s/127.0.0.1/0.0.0.0/g"
 ```
 
 ### 💸 18.9 Envío de una transacción simple
 
-Vamos a hacer un ejemplo, de como mandar **10 ADA** a la **dirección de donaciones de CoinCashew** 🙃 
+Vamos a hacer un ejemplo, de como mandar **10 ADA** a la **dirección de donaciones de CoinCashew** 🙃
 
 Primero, encontramos el **tip** de la cadena de bloques para configurar el parámetro **invalid-hereafter** de manera adecuada.
 
@@ -2695,7 +2679,7 @@ cardano-cli transaction build-raw \
 {% endtabs %}
 
 Copiamos **tx.raw** al **entorno frío.**
- 
+
 Firmamos la transacción con las claves secretas de pago y stake.
 
 {% tabs %}
@@ -2747,8 +2731,6 @@ Deberías ver un resultado similar en la terminal, que demuestre que tus fondos 
 ### 🔓 18.10 Refuerza la seguridad del Nodo
 
 No te saltes este paso crítico para proteger tu Stake Pool y reputación.
-
-{% page-ref page="how-to-harden-ubuntu-server.md" %}
 
 ### 🍰 18.11 Reclamar recompensas
 
@@ -2889,7 +2871,7 @@ cardano-cli transaction build-raw \
 
 Copiamos **tx.raw** hacia el **entorno frío.**
 
-Firmamos la transacción con las claves secretas de pago y stake. 
+Firmamos la transacción con las claves secretas de pago y stake.
 
 {% tabs %}
 {% tab title="Máquina Fuera de Línea" %}
@@ -2935,13 +2917,13 @@ Deberías de ver una salida similar a esta, mostrando tu balance actuializado co
 ```text
                            TxHash                                 TxIx        Lovelace
 ----------------------------------------------------------------------------------------
-100322a39d02c2ead....  
+100322a39d02c2ead....
 ```
 
 ### 🕒 18.12 Agenda de Producción de Bloques - Encuentra cuándo le toca a tu Stake Pool crear bloques
 
 {% hint style="info" %}
-🔥 **Súper Tip**: Puedes calcular la agenda, la cual te dice cuando es el turno de tu Stake Pool para crear un bloque. Esto te puede pueda ayudar a saber cuando es el mejor momento para realizar mantenimiento a tu Stake Pool. También puede ayudar a verificar si tu Stake Pool está creando bloques correctamente cuando llegue tu turno. El crédito de este proceso se lo lleva [Andrew Westberg @amw7](https://twitter.com/amw7) \(desarrollador de JorManager y operator del grupo de Stake Pools de BCSH\). 
+🔥 **Súper Tip**: Puedes calcular la agenda, la cual te dice cuando es el turno de tu Stake Pool para crear un bloque. Esto te puede pueda ayudar a saber cuando es el mejor momento para realizar mantenimiento a tu Stake Pool. También puede ayudar a verificar si tu Stake Pool está creando bloques correctamente cuando llegue tu turno. El crédito de este proceso se lo lleva [Andrew Westberg @amw7](https://twitter.com/amw7) \(desarrollador de JorManager y operator del grupo de Stake Pools de BCSH\).
 {% endhint %}
 
 Revisamos en la terminal si tenemos instalado Python.
@@ -2968,7 +2950,7 @@ sudo apt-get install -y python3.9
 {% endtab %}
 {% endtabs %}
 
-Revisamos si tenemos pip instalado. 
+Revisamos si tenemos pip instalado.
 
 {% tabs %}
 {% tab title="Nodo Productor de Bloques" %}
@@ -3005,7 +2987,7 @@ pip3 --version
 {% endtab %}
 {% endtabs %}
 
-Clonamos el script leaderLog del repositorio [papacarp/pooltool.io](https://github.com/papacarp/pooltool.io). 
+Clonamos el script leaderLog del repositorio [papacarp/pooltool.io](https://github.com/papacarp/pooltool.io).
 
 {% hint style="info" %}
 La documentación oficial para la herramienta leaderLogs puede ser consultada [aquí.](https://github.com/papacarp/pooltool.io/blob/master/leaderLogs/README.md)
@@ -3085,7 +3067,7 @@ sed -i -e 's/\r$//' qcpolsendmytip.sh
 md5sum qcpolsendmytip.sh
 ```
 
-Para asegurarte que el archivo es genuino, el hash debe ser `f7646132e922b24b140202e5f5cba3ac`.  Si no lo es, detente aquí y borra el archivo usando `rm qcpolsendmytip.sh`.
+Para asegurarte que el archivo es genuino, el hash debe ser `f7646132e922b24b140202e5f5cba3ac`. Si no lo es, detente aquí y borra el archivo usando `rm qcpolsendmytip.sh`.
 
 Necesitarás tu clave API de pooltool.io \(se muestra en tu perfil después de registrarte\).
 
@@ -3105,7 +3087,7 @@ sed -i -e 's/\r$//' qcpolsendmytip.service
 md5sum qcpolsendmytip.service
 ```
 
-Para asegurarte que el archivo es genuino, el hash debe ser `f848641fdc2692ee538e082bada44c2c`.  Si no lo es, detente aquí y borra el archivo usando `rm qcpolsendmytip.service`.
+Para asegurarte que el archivo es genuino, el hash debe ser `f848641fdc2692ee538e082bada44c2c`. Si no lo es, detente aquí y borra el archivo usando `rm qcpolsendmytip.service`.
 
 ```bash
 sed -i qcpolsendmytip.service -e "s|CFG_WORKING_DIRECTORY|$NODE_HOME|g"
@@ -3120,8 +3102,6 @@ sudo systemctl start qcpolsendmytip
 {% endtabs %}
 
 Si todo fue configurado de manera correcta, deberías de ver la columna `height` actualizada en pooltool.io.
-
-![Your pool&apos;s tip on pooltool.io](../../../.gitbook/assets/tip.png)
 
 {% hint style="warning" %}
 **Tip:** Si el script consume demasiada CPU, puedes disminuir la frecuencia en la que revisa nuevos bloques. Simplemente cambia a **0.5** en el siguiente script por un valor que funcione para ti. El valor está dado en segundo. El valor original del script es de **0.1**
@@ -3141,7 +3121,7 @@ sudo systemctl restart qcpolsendmytip
 ### 💰 18.14 Asegura el pledge de tu Stake Pool con un segundo propietario con una wallet física.
 
 {% hint style="info" %}
-Resguarda tu **cuenta de contiene el pledge** y la **cuenta de recompensas** con una wallet física, tal como una Trezor o Ledger Nano S/X. Créditos a [angelstakepool](https://github.com/angelstakepool/add-hw-wallet-owner-to-pool) por documentar este proceso. 
+Resguarda tu **cuenta de contiene el pledge** y la **cuenta de recompensas** con una wallet física, tal como una Trezor o Ledger Nano S/X. Créditos a [angelstakepool](https://github.com/angelstakepool/add-hw-wallet-owner-to-pool) por documentar este proceso.
 {% endhint %}
 
 {% hint style="danger" %}
@@ -3186,7 +3166,7 @@ Actualiza el certificado de registro y agrega el nuevo propietario de la wallet 
 
 Modifica el certificado de registro de acuerdo a la configuración de tu Stake Pool.
 
-Si tienes **múltiples nodos relevadores** [**consulta la seccion 12**](./#12-register-your-stake-pool) y cambia tus parámetros de manera apropiada.
+Si tienes **múltiples nodos relevadores** [**consulta la seccion 12**](/#12-register-your-stake-pool) y cambia tus parámetros de manera apropiada.
 
 {% tabs %}
 {% tab title="Máquina Fuera de Línea" %}
@@ -3326,6 +3306,7 @@ Copia **tx.raw** a tu **entorno frío**
 Ahora necesitamos varias firmas testigo para nuestra tansacción.
 
 Se necesitarán los siguientes 4 testigos.
+
 * node.vkey
 * hw-stake.vkey
 * stake.vkey
@@ -3400,7 +3381,7 @@ cardano-cli transaction assemble \
   --witness-file stake.witness \
   --witness-file payment.witness \  
   --witness-file hw-stake.witness \
-  --out-file tx-pool.multisign 
+  --out-file tx-pool.multisign
 ```
 {% endtab %}
 {% endtabs %}
@@ -3433,10 +3414,10 @@ Una vez que hayan pasado dos epochs, puedes transferir de manera segura los fond
 
 Aquí se encuentran los problemas más comunes que un Operador de Stake Pool puede experimentar y la manera de resolverlos.
 
-1. **Problemas de configuración / metadata** - Revisa con [https://pool.vet](https://pool.vet) Si algún problema es detectado, solucionalo [actualizando el registro de tu Stake Pool](./#18-4-changing-the-pledge-fee-margin-etc).
+1. **Problemas de configuración / metadata** - Revisa con [https://pool.vet](https://pool.vet) Si algún problema es detectado, solucionalo [actualizando el registro de tu Stake Pool](/#18-4-changing-the-pledge-fee-margin-etc).
 2. **Estado de los Relevadores** - Revisa los relevadores de tu Stake Pool en [adapools.org](https://adapools.org/) en la pestaña "About"
 3. **Conexiones in/out del Nodo Productor** - Deben de corresponder a tu configuración. Al menos 1 IN / 1 OUT es requerida. Revisa tu firewall o configuración de IP/Puertos
-4. **Transacciones Procesadas (TX processed count)** - Deben ser diferentes de cero en tu Nodo Productor. Revisa la configuración de la red.
+4. **Transacciones Procesadas \(TX processed count\)** - Deben ser diferentes de cero en tu Nodo Productor. Revisa la configuración de la red.
 5. **Sincronización de Tiempo** - instala [chrony](how-to-setup-chrony.md) en todos los Nodos.
 6. **Pledge no se cumple** - Revisa tu Stake Pool en [pooltool.io](https://pooltool.io/) o [adapools.org](https://adapools.org/). Añade más ADA a la dirección del pledge.
 
@@ -3633,7 +3614,7 @@ cardano-cli transaction submit \
 {% endtabs %}
 
 {% hint style="success" %}
-La Stake Pool será retirada al final del epoch especificado. En este ejemplo, el retiro ocurre al final del epoch 40. 
+La Stake Pool será retirada al final del epoch especificado. En este ejemplo, el retiro ocurre al final del epoch 40.
 
 Si cambias de opinión, puedes crear un nuevo certificado de registro antes del final del epoch 40, lo cual hará inválido el certificado de desregistro.
 {% endhint %}
@@ -3652,26 +3633,18 @@ jq -r '.esLState._delegationState._pstate._pParams."'"$(cat stakepoolid.txt)"'" 
 ## 🚀 20. Al infinito y más allá...
 
 {% hint style="success" %}
-¿Encontraste esta guía útil? Háznoslo saber con una donación y la mantendremos actualizada.🙏 🚀 
+¿Encontraste esta guía útil? Háznoslo saber con una donación y la mantendremos actualizada.🙏 🚀
 
-Realmente nos motiva a seguir creando las mejores guías de criptomonedas. Si deseas donar [estas son las direcciones](https://cointr.ee/coincashew) a las que puedes depositar y dejarnos tu mensaje. 🙏 
+Realmente nos motiva a seguir creando las mejores guías de criptomonedas. Si deseas donar [estas son las direcciones](https://cointr.ee/coincashew) a las que puedes depositar y dejarnos tu mensaje. 🙏
 {% endhint %}
 
 ## 📖 21. Traducción
 
-¡Buen día! Mi nombre es Ángel, soy Ingeniero en Automatización 🤖 y realicé esta traducción de la guía, espero sea de tu agrado 😄.
-Cualquier comentario, duda o sugerencia acerca de la traducción siéntete libre de hacermelo saber a mi correo: raspimxpool@gmail.com directamente a [twitter.](https://twitter.com/RaspberrypiM)
+¡Buen día! Mi nombre es Ángel, soy Ingeniero en Automatización 🤖 y realicé esta traducción de la guía, espero sea de tu agrado 😄. Cualquier comentario, duda o sugerencia acerca de la traducción siéntete libre de hacermelo saber a mi correo: raspimxpool@gmail.com directamente a [twitter.](https://twitter.com/RaspberrypiM)
 
 Actualmente tengo una Stake Pool corriendo en una Raspberry Pi 4. Espero seguir actualizando la guía a futuro conforme surjan más actualizaciones del nodo y de la guía.
 
-Si deseas delegar algo de ADA a mi pequeña [Stake Pool (PIMX)](https://adapools.org/pool/f4c50c06dcc45e1b1eae66f42307295040564243fa635b8ca847e6d9) estaría muy agradecido.
+Si deseas delegar algo de ADA a mi pequeña [Stake Pool \(PIMX\)](https://adapools.org/pool/f4c50c06dcc45e1b1eae66f42307295040564243fa635b8ca847e6d9) estaría muy agradecido.
 
 Traducción terminada el:**19 de Abril de 2021.**
-
-
-
-
-
-
-
 
