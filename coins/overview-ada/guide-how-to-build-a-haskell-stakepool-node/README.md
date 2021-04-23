@@ -76,7 +76,7 @@ Si necesitas ayuda instalando **Ubuntu Desktop**, puedes consultar el siguiente 
 
 ### 🧱 Reconstruyendo Nodos
 
-Si estás reconstruyendo o reutilizando una instalación previa de `cardano-node`, consulta la [sección 18.2 ¿Cómo reiniciar la instalación?.](/#18-2-resetting-the-installation)
+Si estás reconstruyendo o reutilizando una instalación previa de `cardano-node`, consulta la [sección 18.2 ¿Cómo reiniciar la instalación?.](./#18-2-reiniciando-la-intalacion)
 
 ### 🏭 1. Instalar Cabal y GHC
 
@@ -133,7 +133,6 @@ Responde **NO** cuando se nos pida instalar haskell-language-server \(HLS\).
 Responde **YES** para agregar de manera automática la variable PATH al archivo ".bashrc".
 
 ```bash
-curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 ghcup upgrade
 ghcup install cabal 3.4.0.0
 ghcup set cabal 3.4.0.0
@@ -276,6 +275,8 @@ Un Nodo Productor de Bloques es aquel que está configurado con varios pares de 
 {% hint style="info" %}
 Un Nodo Relevador no tendrá ningún tipo de clave y por lo tanto no será capaz de producir ningún bloque. Estará conectado a su Nodo Productor de Bloques, a otros relevadores y nodos externos en la red.
 {% endhint %}
+
+![](../../../.gitbook/assets/producer-relay-diagram.png)
 
 {% hint style="success" %}
 Para propósitos de la guía, vamos a trabajar **dos nodos** en **dos servidores independientes**. Uno será llamado el **Nodo Productor de Bloques** y el otro será su Nodo Relevador, llamado **NodoRelevador1**.
@@ -617,6 +618,8 @@ Ejecutamos gLiveView para monitorear el proceso de sincronización de nuestro no
 ```
 
 Vista de ejemplo de gLiveView
+
+![](../../../.gitbook/assets/glive.png)
 
 Para más información, puedes ir a la [página Oficial de Guild Live View](https://cardano-community.github.io/guild-operators/#/Scripts/gliveview)
 
@@ -1799,6 +1802,8 @@ No olvides reiniciar tus Nodos Relevadores después de cada actualización del a
 \*\*\*\*🔥 **Paso Crítico:** Para que tu Stake Pool sea funcional y esté lista para producir bloques, debes de ver el número de transacciones aumentando en gLiveView. De lo contrario revisa tu archivo de topología y asegurate que los demás nodos están conectados correctamente, o idealmente que hayan producido algún bloque en el pasado.
 {% endhint %}
 
+![Las Transacciones deben ser un n&#xFA;mero positivo. Debe de haber conexiones en la parte de IN / OUT.](../../../.gitbook/assets/in-out-connections.png)
+
 {% hint style="danger" %}
 \*\*\*\*🛑 **Nota Importante de Seguridad**: Las siguientes claves y certificados son los únicos archivos requeridos en el Nodo Productor para que el Stake Pool funcione:
 
@@ -2036,8 +2041,8 @@ sudo systemctl restart cardano-node
 ### 😊 17.1 Donaciones
 
 {% hint style="info" %}
-
-¿Encontraste útil esta guía? Háznoslo saber con una donación y continuaremos actualizandola. Puntos extras si sigues [las instrucciones de la sección 18.9](/#18-9-send-a-simple-transaction-example). 🙏 🚀
+¿Encontraste útil esta guía? Háznoslo saber con una donación y continuaremos actualizandola. Puntos extras si sigues [las instrucciones de la sección 18.9.](./#18-9-envio-de-una-transaccion-simple) 🙏 🚀
+{% endhint %}
 
 Esto realmente nos anima a seguir creando las mejores guías en criptomonedas.
 
@@ -2269,7 +2274,7 @@ cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > po
 
 Actualiza el certificado de registro con los parámetros que desees.
 
-Si tienes **múltiples nodos relevadores** [**consulta la sección 12**](/#12-register-your-stake-pool) y cambia tus parámetros de manera apropiada.
+Si tienes **múltiples nodos relevadores** [**consulta la sección 12**](./#12-registrando-el-stake-pool) y cambia tus parámetros de manera apropiada.
 
 {% hint style="warning" %}
 El parámetro **metadata-url** no debe ser mayor a 64 caracteres.
@@ -2532,7 +2537,7 @@ cat stakepoolid.sig
 
 Encuentra tu clave pública de propietario en el archivo generado en la ITN. Esta información podría estar almacenada en un archivo con extensión `.pub`
 
-Finalmente sigue [las instrucciones para actualizar la información de tu Stake Pool](/#18-4-changing-the-pledge-fee-margin-etc) usando **`metadata-url`** y **`metadata-hash`**. Date cuenta que la metadata tiene un campo llamado "extended" en donde se demuestra que tienes propiedad sobre el ticker desde la ITN.
+Finalmente sigue[ las instrucciones para actualizar la información de tu Stake Pool](./#18-4-cambiando-los-parametros-del-stake-pool-tarifas-margenes-etc) usando **`metadata-url`** y **`metadata-hash`**. Date cuenta que la metadata tiene un campo llamado "extended" en donde se demuestra que tienes propiedad sobre el ticker desde la ITN.
 
 ### 📚 18.8 Actualizar los archivos de configuración del nodo
 

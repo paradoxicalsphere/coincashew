@@ -7,7 +7,7 @@ description: >-
 
 # Cardano: ADA
 
-##  Datos Generales
+##  ![](../../.gitbook/assets/ada.png) Datos Generales
 
 | Página Web | Enlace |
 | :--- | :--- |
@@ -55,4 +55,10 @@ description: >-
 | CoinGecko | [https://www.coingecko.com/en/coins/cardano](https://www.coingecko.com/en/coins/cardano) |
 
 ## 💰 Wallets
+
+{% page-ref page="../../wallets/browser-wallets/yoroi-wallet-cardano.md" %}
+
+{% page-ref page="../../wallets/mobile-wallets/exodus-multi-chain-assets.md" %}
+
+{% page-ref page="../../wallets/mobile-wallets/guarda-multi-chain-assets.md" %}
 
