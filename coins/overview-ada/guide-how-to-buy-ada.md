@@ -12,7 +12,7 @@ description: Proceso simple para comprar Cardano en dos pasos.
 
 | Sitio | Pares de Cambio | Localización | ¿Requiere Identificación? |
 | :--- | :--- | :--- | :--- |
-| [Binance](https://www.coinex.com/register?refer_code=6rcz2) | BTC-BNB-BUSD-USDT | Internacional | No. 2₿/día. |
+| [Binance](https://www.binance.com/en/register?ref=RI4R7YI6) | BTC-BNB-BUSD-USDT | Internacional | No. 2₿/día. |
 | [CoinEx](https://www.coinex.com/register?refer_code=6rcz2) | BCH-BTC-USDT | Hong Kong | No. 10,000USD/día. |
 | [Kucoin](https://www.kucoin.com/ucenter/signup?rcode=2M43tty) | BTC-USDT | Seychelles | No. 2₿/día. |
 | [AscendEX](https://ascendex.com/) | BTC-USDT | Singapur | No. 2₿/día. |
