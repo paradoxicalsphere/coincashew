@@ -12,15 +12,12 @@ description: >-
 {% endhint %}
 
 {% hint style="success" %}
-
-このマニュアルは、カルダノノードv1.27.0に対応しています。
-最終更新日：2021年5月14日の時点guide version 4.2.0  
+このマニュアルは、カルダノノードv1.27.0に対応しています。 最終更新日：2021年5月14日の時点guide version 4.2.0
 {% endhint %}
 
 {% hint style="info" %}
 こちらのマニュアルは更新頻度が低く、最新情報ではない可能性があります。  
 BTBFが管理するドメイン[https://dev.xstakepool.com/](https://dev.xstakepool.com/)の日本語マニュアルをご参照ください。
-
 {% endhint %}
 
 ## 🏁 0. 前提条件
@@ -72,12 +69,12 @@ BTBFが管理するドメイン[https://dev.xstakepool.com/](https://dev.xstakep
 ステークプールのサーバ初期設定とセキュリティ強化するには、以下の内容を実施して下さい。
 
 {% hint style="info" %}
-[Ubuntuサーバー初期設定(+セキュリティ設定)](./how-to-harden-ubuntu-server.md)
+[Ubuntuサーバー初期設定\(+セキュリティ設定\)](how-to-harden-ubuntu-server.md)
 {% endhint %}
 
 ### 🧱 ノードを再構築したい場合
 
-もしノードインストールを初めからやり直したい場合は[項目18.2](./guide-how-to-build-a-haskell-stakepool-node.md#182-resetting-the-installation)で、リセットの方法を確認して下さい。
+もしノードインストールを初めからやり直したい場合は[項目18.2](https://github.com/coincashew/master/tree/0604ca07ac76da79517e21284415c4410914341b/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/guide-how-to-build-a-haskell-stakepool-node.md#182-resetting-the-installation)で、リセットの方法を確認して下さい。
 
 ### 🧱 試しにノードを起動してみたい方へ
 
@@ -446,7 +443,7 @@ sudo systemctl enable cardano-node
 sudo systemctl start cardano-node
 ```
 
-[5-2.gLiveView ノードステータスモニターをインストールします](guide-how-to-build-a-haskell-stakepool-node.md#5-2-gliveview-ndosuttasumonitwoinsutrushimasu)に進んでください。
+[5-2.gLiveView ノードステータスモニターをインストールします](https://github.com/coincashew/master/tree/0604ca07ac76da79517e21284415c4410914341b/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/guide-how-to-build-a-haskell-stakepool-node.md#5-2-gliveview-ndosuttasumonitwoinsutrushimasu)に進んでください。
 
 {% hint style="danger" %}
 以下は、systemdを有効活用するためのコマンドです。  
@@ -1198,7 +1195,7 @@ cardano-cli transaction submit \
 
 {% hint style="warning" %}
 こちらの手順は初回プール登録時のみ有効です。  
-プール登録後にメタ情報、誓約、固定費、変動費、リレー情報を変更する場合は、[18.4](./guide-how-to-build-a-haskell-stakepool-node.md#184-prumetayamarginno)の変更手順を実施してください。
+プール登録後にメタ情報、誓約、固定費、変動費、リレー情報を変更する場合は、[18.4](https://github.com/coincashew/master/tree/0604ca07ac76da79517e21284415c4410914341b/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/guide-how-to-build-a-haskell-stakepool-node.md#184-prumetayamarginno)の変更手順を実施してください。
 {% endhint %}
 
 {% hint style="warning" %}
@@ -1716,7 +1713,7 @@ crontab -l
 
 以下が返り値として表示されればOK。
 
-> "22  __  __ /home/_\*_/cardano-my-node/topologyUpdater.sh"
+> "22  **** /home/_\*_/cardano-my-node/topologyUpdater.sh"
 
 {% hint style="success" %}
 4時間の間で4回スクリプトが実行された後に、ノードがオンライン状態で有ることが認められた場合にノードIPがトポロジーフェッチリストに登録されます。
@@ -2060,9 +2057,9 @@ addr1qxhazv2dp8yvqwyxxlt7n7ufwhw582uqtcn9llqak736ptfyf8d2zwjceymcq6l5gxht0nx9zwa
 
 カルダノ分散化、日本コミュニティ発展の為に日本語化させて頂きました。私達をサポート頂ける方は当プールへ委任頂けますと幸いです。
 
-* Ticker：XSP  
+* Ticker：XSP
 
-  Pool ID↓  
+  Pool ID↓
 
   ```bash
   788898a81174665316af96880459dcca053f7825abb1b0db9a433630
@@ -2223,7 +2220,7 @@ wget -O poolMetaData.json https://git.io/JUcnl
 {% endtab %}
 {% endtabs %}
 
-poolMetaData.jsonを変更する場合は、メタデータファイルのハッシュを再計算し、更新されたpoolMetaData.jsonをWEBサーバへアップロードしてください。 詳細については [項目11-1](./guide-how-to-build-a-haskell-stakepool-node.md#11-1-prunojsonfairuwoshiteprunometadtawoshimasu)を参照して下さい。
+poolMetaData.jsonを変更する場合は、メタデータファイルのハッシュを再計算し、更新されたpoolMetaData.jsonをWEBサーバへアップロードしてください。 詳細については [項目11-1](https://github.com/coincashew/master/tree/0604ca07ac76da79517e21284415c4410914341b/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/guide-how-to-build-a-haskell-stakepool-node.md#11-1-prunojsonfairuwoshiteprunometadtawoshimasu)を参照して下さい。
 
 {% tabs %}
 {% tab title="ブロックプロデューサーノード" %}
@@ -2236,8 +2233,7 @@ cardano-cli stake-pool metadata-hash --pool-metadata-file poolMetaData.json > po
 
 登録証明書トランザクションを作成します。
 
-複数のリレーノードを設定する場合は [**こちら**](./guide-how-to-build-a-haskell-stakepool-node.md#norirndowosuru) を参考にパラメーターを指定して下さい。  
-  
+複数のリレーノードを設定する場合は [**こちら**](https://github.com/coincashew/master/tree/0604ca07ac76da79517e21284415c4410914341b/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/guide-how-to-build-a-haskell-stakepool-node.md#norirndowosuru) を参考にパラメーターを指定して下さい。
 
 **poolMetaDataHash.txt** をエアギャップオフラインマシンのcardano-my-nodeディレクトリにコピーします。
 
@@ -2668,9 +2664,9 @@ cardano-cli query utxo \
 2つの送金方法があります。
 
 {% hint style="info" %}
-**1.payment.addrへ送金する方法**は[こちら](./guide-how-to-build-a-haskell-stakepool-node.md#18-10-1-paymentaddrhesuru)
+**1.payment.addrへ送金する方法**は[こちら](https://github.com/coincashew/master/tree/0604ca07ac76da79517e21284415c4410914341b/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/guide-how-to-build-a-haskell-stakepool-node.md#18-10-1-paymentaddrhesuru)
 
-**2.任意のアドレスへ送金する方法は**[こちら](./guide-how-to-build-a-haskell-stakepool-node.md#18-10-2-noadoresuhesuru)
+**2.任意のアドレスへ送金する方法は**[こちら](https://github.com/coincashew/master/tree/0604ca07ac76da79517e21284415c4410914341b/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/guide-how-to-build-a-haskell-stakepool-node.md#18-10-2-noadoresuhesuru)
 {% endhint %}
 
 {% hint style="danger" %}
@@ -3064,7 +3060,7 @@ cardano-cli query utxo \
 ### 🕒 18.12 スロットリーダースケジュール - ブロック生成時期を確認する
 
 {% hint style="info" %}
-[ブロックログツール](guild-tools/README.md) を導入する
+[ブロックログツール](https://github.com/coincashew/master/tree/0604ca07ac76da79517e21284415c4410914341b/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node/guild-tools/README.md) を導入する
 {% endhint %}
 
 ## 🌜 19. ステークプールを廃止する
