@@ -52,6 +52,8 @@ To search the _How to Set Up a Cardano Stake Pool_ guide, click the magnifying g
 
 ## :page\_facing\_up: Change Log
 
+* April 12, 2026
+  * Evidence for @iLLNESS
 * August 8, 2025
   * Incorporating revisions supporting Cardano Node 10.5.1 and Cardano CLI 10.11.0.0
   * Updating scripts to parse Cardano CLI JSON output
